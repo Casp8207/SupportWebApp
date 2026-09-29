@@ -7,7 +7,10 @@
         "launchBrowser": true,
         "applicationUrl": "http://localhost:5222",
         "environmentVariables": {
-          "ASPNETCORE_ENVIRONMENT": "Development"
+          "ASPNETCORE_ENVIRONMENT": "Development",
+          "DATABASE": "IBasSupportDB",
+          "CONTAINER": "ibassupport",
+          "COSMOS_CONNECTION_STRING": ""
         }
       },
       "https": {
@@ -16,7 +19,10 @@
         "launchBrowser": true,
         "applicationUrl": "https://localhost:7160;http://localhost:5222",
         "environmentVariables": {
-          "ASPNETCORE_ENVIRONMENT": "Development"
+          "ASPNETCORE_ENVIRONMENT": "Development",
+          "DATABASE": "IBasSupportDB",
+          "CONTAINER": "ibassupport",
+          "COSMOS_CONNECTION_STRING": ""
         }
       }
     }

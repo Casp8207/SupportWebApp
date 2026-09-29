@@ -1,0 +1,41 @@
+﻿@page "/support-list"
+
+@using SupportWebApp.Models
+@using SupportWebApp.Services
+@inject CosmosDbService CosmosDbService
+
+<h1>Supportbeskeder</h1>
+
+@if (supportMessages == null)
+{
+    <p>Henter supportbeskeder...</p>
+}
+else if (supportMessages.Count == 0)
+{
+    <p>Der er ingen supportbeskeder.</p>
+}
+else
+{
+    @foreach (var supportMessage in supportMessages)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">@supportMessage.Name</h5>
+                <p><strong>Email:</strong> @supportMessage.Email</p>
+                <p><strong>Telefon:</strong> @supportMessage.Phone</p>
+                <p><strong>Kategori:</strong> @supportMessage.Category</p>
+                <p><strong>Beskrivelse:</strong> @supportMessage.Description</p>
+                <p><strong>Dato:</strong> @supportMessage.DateTime</p>
+            </div>
+        </div>
+    }
+}
+
+@code {
+    private List<SupportMessage>? supportMessages;
+
+    protected override async Task OnInitializedAsync()
+    {
+        supportMessages = await CosmosDbService.GetSupportMessagesAsync();
+    }
+}
