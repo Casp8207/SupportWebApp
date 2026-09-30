@@ -22,7 +22,7 @@
           "ASPNETCORE_ENVIRONMENT": "Development",
           "DATABASE": "IBasSupportDB",
           "CONTAINER": "ibassupport",
-          "COSMOS_CONNECTION_STRING": ""
+          "COSMOS_CONNECTION_STRING":""
         }
       }
     }

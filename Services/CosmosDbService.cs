@@ -9,9 +9,9 @@ public class CosmosDbService
 
     public CosmosDbService(IConfiguration configuration)
     {
-        var connectionString = Environment.GetEnvironmentVariable("COSMOS_CONNECTION_STRING");
-        var databaseName = Environment.GetEnvironmentVariable("DATABASE");
-        var containerName = Environment.GetEnvironmentVariable("CONTAINER");
+        var connectionString = configuration["ConnectionString:CosmosDB"];
+        var databaseName = configuration["CosmosDbSettings:DatabaseName"];
+        var containerName = configuration["CosmosDbSettings:ContainerName"];
 
         var client = new CosmosClient(connectionString);
         _container = client.GetContainer(databaseName, containerName);
