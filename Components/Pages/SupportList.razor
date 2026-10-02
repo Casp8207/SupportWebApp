@@ -3,6 +3,7 @@
 @using SupportWebApp.Models
 @using SupportWebApp.Services
 @inject CosmosDbService CosmosDbService
+@rendermode InteractiveServer
 
 <h1>Supportbeskeder</h1>
 
@@ -31,11 +32,32 @@ else
     }
 }
 
+<select @onchange="CategoryChanged">
+    <option value="">Vælg kategori</option>
+    <option value="salg">Salg</option>
+    <option value="support">Support</option>
+    <option value="teknisk">Teknisk</option>
+</select>
+
 @code {
     private List<SupportMessage>? supportMessages;
 
     protected override async Task OnInitializedAsync()
     {
         supportMessages = await CosmosDbService.GetSupportMessagesAsync();
+    }
+
+    private async Task CategoryChanged(ChangeEventArgs e)
+    {
+        var category = e.Value?.ToString();
+
+        if (!string.IsNullOrEmpty(category))
+        {
+            supportMessages = await CosmosDbService.GetSupportMsgByCategoryAsync(category);
+        }
+        else
+        {
+            supportMessages = await CosmosDbService.GetSupportMessagesAsync();
+        }
     }
 }
