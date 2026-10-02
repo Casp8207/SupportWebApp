@@ -6,6 +6,13 @@
 @rendermode InteractiveServer
 
 <h1>Supportbeskeder</h1>
+<p>Antal henvendelser: @supportMessages?.Count</p>
+<select @onchange="CategoryChanged">
+    <option value="">Vælg kategori</option>
+    <option value="salg">Salg</option>
+    <option value="support">Support</option>
+    <option value="teknisk">Teknisk</option>
+</select>
 
 @if (supportMessages == null)
 {
@@ -32,12 +39,6 @@ else
     }
 }
 
-<select @onchange="CategoryChanged">
-    <option value="">Vælg kategori</option>
-    <option value="salg">Salg</option>
-    <option value="support">Support</option>
-    <option value="teknisk">Teknisk</option>
-</select>
 
 @code {
     private List<SupportMessage>? supportMessages;
